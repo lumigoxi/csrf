@@ -2,6 +2,9 @@ const UserRepository = require("./UserRepository");
 
 const UpdateUser = async ({ user: email }, password) => {
   try {
+    if (!password) {
+      throw new Error("Password is required");
+    }
     const user = await UserRepository.update(email, password);
     return user;
   } catch (error) {

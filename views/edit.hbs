@@ -2,6 +2,7 @@
   
 <form action="/user/edit" method="post">
 <h3 class="d-flex justify-content-center">Edit password</h3>
+  <input type="hidden" value={{token}} name="token">
   <div class="mb-3">
     <label for="password" class="form-label">new Password</label>
     <input type="password" class='form-control'name="password" placeholder="**********">
