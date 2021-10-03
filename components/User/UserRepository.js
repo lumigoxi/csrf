@@ -1,8 +1,8 @@
 const UserModel = require("./UserModel");
 
-const update = async () => {
+const update = async (email, password) => {
   try {
-    const user = await UserModel.findByIdAndUpdate();
+    const user = await UserModel.findByEmailAndUpdate(email, password);
     return user;
   } catch (error) {
     console.log("[UserRepository] " + error.message);

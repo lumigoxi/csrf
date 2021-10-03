@@ -1,14 +1,29 @@
 const fs = require("fs").promises;
 const path = require("path");
 
-const findByIdAndUpdate = async () => {
+const findByEmailAndUpdate = async (myEmail, newPassword) => {
   try {
     const data = await fs.readFile(
       path.resolve(__dirname, "../../mocks/UserMock.json"),
       "utf-8"
     );
-    const result = await JSON.parse(data);
-    return result;
+    let userChanged = "";
+    const users = await JSON.parse(data);
+    users.forEach((user) => {
+      if (user.email === myEmail) {
+        user.password = newPassword;
+        userChanged = user.email;
+        return;
+      }
+    });
+    console.log(userChanged);
+    const newJson = JSON.stringify(users);
+    const result = await fs.writeFile(
+      path.resolve(__dirname, "../../mocks/UserMock.json"),
+      newJson
+    );
+    console.log(result);
+    return userChanged;
   } catch (error) {
     console.log("[UserModel] " + error.message);
   }
@@ -33,6 +48,6 @@ const findByEmail = async (myEmail) => {
 };
 
 module.exports = {
-  findByIdAndUpdate,
+  findByEmailAndUpdate,
   findByEmail,
 };

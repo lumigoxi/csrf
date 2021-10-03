@@ -1,12 +1,8 @@
 const UserRepository = require("./UserRepository");
 
-const UpdateUser = async () => {
-  // if (!id) {
-  //   throw new Error("El id es requerido");
-  // }
-
+const UpdateUser = async ({ user: email }, password) => {
   try {
-    const user = await UserRepository.update();
+    const user = await UserRepository.update(email, password);
     return user;
   } catch (error) {
     console.log("[UserService] " + error.message);

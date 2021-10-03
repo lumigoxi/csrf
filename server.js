@@ -20,7 +20,7 @@ routes(app);
 viewEngine(app);
 
 app.get("/home", (req, res) => {
-  res.send("Estas en home");
+  res.render("home");
 });
 
 app.listen(appPort, () => {

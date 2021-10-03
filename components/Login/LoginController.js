@@ -7,7 +7,7 @@ const route = Router();
 route.post("/", async (req, res) => {
   try {
     const user = await findUserByEmail(req);
-    req.session.user = user.email;
+    req.session.user = user;
     res.redirect("/home");
   } catch (err) {
     res.render("login", { error: err.message });
