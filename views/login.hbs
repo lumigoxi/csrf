@@ -1,13 +1,20 @@
 <section class="d-flex justify-content-center align-self-center pt-5">
+  
 <form action="/login" method="post">
 <h3 class="d-flex justify-content-center">LOGIN</h3>
+{{#if error}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+  {{/if}}
   <div class="mb-3">
     <label for="email" class="form-label">Email</label>
     <input type="text" class='form-control'name="email" placeholder="user@test.com">
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
-    <input type="text" name="password" class="form-control" placeholder="**********">
+    <input type="password" name="password" class="form-control" placeholder="**********">
   </div>
   <div class="d-grid gap-2">
   <input type="submit" class="btn btn-primary btn-block" value="Sing In">

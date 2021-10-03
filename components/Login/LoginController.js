@@ -7,18 +7,15 @@ const route = Router();
 route.post("/", async (req, res) => {
   try {
     const user = await findUserByEmail(req);
-    res.status(200).json({
-      error: null,
-      mensaje: "User has been finded",
-      datos: user,
-    });
+    req.session.user = user.email;
+    res.redirect("/home");
   } catch (err) {
-    res.status(500).json({
-      error: "User wasn't finded",
-      mensaje: err.message,
-      datos: null,
-    });
+    res.render("login", { error: err.message });
   }
+});
+
+route.get("/", (req, res) => {
+  res.render("login");
 });
 
 module.exports = route;
